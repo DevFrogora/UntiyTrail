@@ -1,0 +1,8 @@
+406  echo "# UnityMaths" >> README.md
+  407  git init
+  408  git config user.email "rr4428310@gmail.com"
+  409  git config user.name "neverDieAgain"
+  410  git add .
+  411  git commit -m "Editor Scripting + few maths"
+  412  git remote add origin git@github.com-neverDieAgain:DevFrogora/UnityMaths.git
+  413   git push -u origin master
