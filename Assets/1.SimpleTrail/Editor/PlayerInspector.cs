@@ -20,6 +20,8 @@ public class PlayerInspector : Editor
     public float leftForce = 0;
     public float forwardForce = 0;
 
+    public bool playParticles;
+
     private void OnEnable()
     {
         cube = (Player)target;
@@ -38,6 +40,8 @@ public class PlayerInspector : Editor
         slideVelocity = EditorGUILayout.Slider("velocity ", slideVelocity, 0, 5);
         slideJumpForce = EditorGUILayout.Slider("jumpForce  ", slideJumpForce, 0, 20);
         sceneRepaintAll = EditorGUILayout.Toggle("SceneView Repaint ", sceneRepaintAll);
+        playParticles = EditorGUILayout.Toggle("Particles Play  ", playParticles);
+
 
         //showVelocity = EditorGUILayout.Foldout(showVelocity, "Velocity direction");
         if (GUILayout.Button("Run Physics"))
@@ -118,11 +122,7 @@ public class PlayerInspector : Editor
                     else if (Event.current.keyCode == (KeyCode.K))
                     {
 
-                        GameObject projectile = (GameObject)Instantiate(
-                            cube.bulletObject, cube.shootingPoint.position, cube.shootingPoint.rotation);
-                        projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * cube.shootForce);
-                        EditorCoroutineUtility.StartCoroutine(IEDelayEditor(projectile), this);
-
+                        cube.pressedK = true;
 
                     }
                     else
@@ -201,7 +201,15 @@ public class PlayerInspector : Editor
 
     static IEnumerator IEDelayEditor(GameObject projectile)
     {
-        Debug.Log("Wait 5 second");
+        ParticleSystem ps = projectile.GetComponent<ParticleSystem>();
+        if (ps)
+        {
+            ps.Play();
+        }
+        else
+        {
+            Debug.Log("we Don't able to find particles");
+        }
         yield return new EditorWaitForSeconds(2f);
         DestroyImmediate(projectile.gameObject);
     }
