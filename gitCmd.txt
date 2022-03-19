@@ -1,8 +1,10 @@
-406  echo "# UnityMaths" >> README.md
-  407  git init
-  408  git config user.email "rr4428310@gmail.com"
-  409  git config user.name "neverDieAgain"
-  410  git add .
-  411  git commit -m "Editor Scripting + few maths"
-  412  git remote add origin git@github.com-neverDieAgain:DevFrogora/UnityMaths.git
-  413   git push -u origin master
+ 503  echo "# UnityTrail" >> README.md
+  504  git init
+  505  git config user.email "rr4428310@gmail.com"
+  506  git config user.name "neverDieAgain"
+  507  git add .
+  508  git add .
+  509  git commit -m "Trail Practice"
+  510  git remote add origin git@github.com-neverDieAgain:DevFrogora/UntiyTrail.git
+  511  git push -u origin master
+
